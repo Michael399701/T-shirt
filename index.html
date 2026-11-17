@@ -1,0 +1,456 @@
+<title>Unaccomplished Front Office</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:ital,wght@0,600;0,700;1,800&family=Graduate&family=Yellowtail&display=swap">
+<style>
+/* Layout: a registration desk. A pegboard stage holds the shirt; a clipboard panel beside it holds the dials and the committee's paperwork. */
+:root{--bg:#d7dbd4;--surface:#eef0ea;--ink:#172235;--muted:#556072;--line:#b0b6ad;--green:#1c7748;--gold:#b97c08;--red:#b4382c;--on:#fff;
+--display:Graduate,Rockwell,Georgia,serif;--label:"Barlow Condensed","Arial Narrow",sans-serif;--body:Barlow,system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#131a25;--surface:#1c2533;--ink:#e9e6da;--muted:#9aa5b5;--line:#36435b;--green:#4cb681;--gold:#e3ae3c;--red:#e36b5e;--on:#10161f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#131a25;--surface:#1c2533;--ink:#e9e6da;--muted:#9aa5b5;--line:#36435b;--green:#4cb681;--gold:#e3ae3c;--red:#e36b5e;--on:#10161f;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:1080px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-block:22px 14px;border-bottom:3px double var(--ink);margin-bottom:24px}
+.wm{font:400 clamp(26px,6vw,40px)/1 var(--display);letter-spacing:.01em;display:block}
+.wm s{color:var(--red);text-decoration-thickness:3px}
+.sub{font:600 13px var(--label);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+button,select,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+nav button{font:700 15px var(--label);letter-spacing:.1em;text-transform:uppercase;background:none;border:2px solid transparent;padding:6px 12px;border-radius:3px}
+nav button[aria-current="page"]{background:var(--ink);color:var(--bg)}
+nav button:hover{border-color:var(--ink)}
+h1{font:400 clamp(24px,4.5vw,34px)/1.1 var(--display);margin:0 0 8px;text-wrap:balance}
+h2{font:700 15px var(--label);letter-spacing:.14em;text-transform:uppercase;margin:0}
+.lede{color:var(--muted);max-width:60ch;margin:0 0 18px}
+.mach{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:28px;align-items:start}
+@media(max-width:760px){.mach{grid-template-columns:minmax(0,1fr)}}
+.stage{position:relative;overflow:hidden;background:var(--surface);background-image:radial-gradient(var(--line) 1.3px,transparent 1.5px);background-size:18px 18px;border:2px solid var(--ink);border-radius:4px;padding:18px 18px 14px}
+.tee{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 10px rgba(0,0,0,.25))}
+#tee .tee{max-width:440px;margin:0 auto}
+.tag{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;font:600 14px var(--label);letter-spacing:.08em;text-transform:uppercase}
+.sw{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.sw button{width:26px;height:26px;border-radius:50%;border:2px solid var(--ink);padding:0}
+.sw button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--gold)}
+.btn{font:700 15px var(--label);letter-spacing:.1em;text-transform:uppercase;background:var(--surface);border:2px solid var(--ink);padding:9px 16px;border-radius:3px;box-shadow:3px 3px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.pri{background:var(--green);color:var(--on)}
+.btn.sm{padding:4px 10px;font-size:13px;box-shadow:2px 2px 0 var(--ink)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0}
+.field{display:flex;flex-direction:column;gap:4px;font:600 13px var(--label);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);min-width:0}
+.field input,.field select{font:500 16px var(--body);letter-spacing:0;text-transform:none;color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:3px;padding:8px 10px;width:100%;min-width:0}
+.grid2{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:12px;margin-bottom:12px}
+.grid3{display:grid;grid-template-columns:90px minmax(0,1fr);gap:12px;margin:12px 0}
+.seg{display:flex}
+.seg button{flex:1;font:700 16px var(--label);background:var(--surface);border:2px solid var(--ink);padding:8px 0;margin-left:-2px}
+.seg button:first-child{margin-left:0;border-radius:3px 0 0 3px}.seg button:last-child{border-radius:0 3px 3px 0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.committee{border:2px solid var(--ink);background:var(--surface);border-radius:4px;padding:14px 16px;margin-top:6px}
+.chead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.stamp{font:400 15px var(--display);text-transform:uppercase;border:3px double currentColor;padding:3px 10px;transform:rotate(-3deg);border-radius:3px}
+.v-ok{color:var(--green)}.v-warn{color:var(--gold)}.v-fail{color:var(--red)}
+#rules{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+#rules li{display:grid;grid-template-columns:46px minmax(0,1fr);gap:10px;font-size:14.5px;line-height:1.35}
+#rules b{font:700 12px var(--label);letter-spacing:.1em;border:1.5px solid currentColor;border-radius:2px;text-align:center;align-self:start;padding:1px 0;margin-top:2px}
+#rules strong{font-weight:600}
+.note{font-size:14px;color:var(--muted);margin:10px 0 0}
+#take{border-left:4px solid var(--gold);padding-left:12px;font-size:15px;margin:14px 0 0}
+#take b{font:700 12px var(--label);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block}
+.confetto{position:absolute;top:-16px;width:8px;height:15px;background:var(--gold);animation:fall 2.6s ease-in forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(560px) rotate(600deg)}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.chips button{font:700 14px var(--label);letter-spacing:.08em;text-transform:uppercase;background:var(--surface);border:2px solid var(--ink);border-radius:99px;padding:4px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.rack{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:14px}
+.card{display:flex;flex-direction:column;gap:6px;text-align:left;background:var(--surface);border:2px solid var(--ink);border-radius:4px;padding:10px;min-width:0}
+.card:hover{box-shadow:4px 4px 0 var(--ink);transform:translate(-2px,-2px)}
+.says{font-size:13.5px;line-height:1.3;font-weight:500}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:6px;font:600 12px var(--label);letter-spacing:.06em;color:var(--muted);margin-top:auto;flex-wrap:wrap}
+.pill{align-self:flex-start;font:700 11px var(--label);letter-spacing:.12em;text-transform:uppercase;border:1.5px solid currentColor;border-radius:2px;padding:0 6px}
+.st-L{color:var(--green)}.st-K{color:var(--red)}.st-N{color:var(--gold)}.st-I{color:var(--muted)}
+.dots{display:inline-flex;gap:2px}.dots i{width:7px;height:7px;border:1px solid var(--gold)}.dots i.f{background:var(--gold)}
+.tblwrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{padding:5px 6px;text-align:left;vertical-align:middle}
+#maptbl th{font:700 14px var(--label);letter-spacing:.06em;text-transform:uppercase}
+#maptbl th small{display:block;font-weight:600;color:var(--muted);letter-spacing:.04em}
+#maptbl td{width:22%;padding:3px}
+.zone{width:100%;min-height:50px;border:2px solid var(--ink);border-radius:3px;background:color-mix(in srgb,var(--green) calc(var(--n)*85%),var(--surface));display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;padding:4px}
+.zone b{font:400 19px var(--display)}.zone small{font:600 11px var(--label);letter-spacing:.06em;text-transform:uppercase}
+.zone.hot{color:var(--on)}
+.zone.gapz{border-style:dashed;color:var(--red)}.zone.gapz b{font:700 13px var(--label);letter-spacing:.14em;text-transform:uppercase}
+.zone.on{box-shadow:0 0 0 3px var(--gold)}
+.zl{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+.zl button{display:flex;justify-content:space-between;gap:10px;align-items:center;width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:3px;padding:7px 10px;font-size:14.5px}
+.zl button:hover{border-color:var(--ink)}
+.duel{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:stretch;max-width:760px}
+.vs{align-self:center}
+.duel .card{align-items:center;text-align:center;padding:12px}
+.vs{font:400 18px var(--display);color:var(--muted)}
+#board td,#board th{border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+#board th{font:700 13px var(--label);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+#board small{color:var(--muted);display:block}
+.up{color:var(--red);font-weight:600}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+@media(max-width:760px){.split{grid-template-columns:minmax(0,1fr)}}
+#out{width:100%;min-height:70px;margin-top:10px;background:var(--surface);border:2px solid var(--ink);border-radius:3px;padding:8px;font:13px ui-monospace,monospace}
+#toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);font:700 14px var(--label);letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:3px;max-width:calc(100% - 32px);z-index:5}
+footer{margin-top:40px;padding-top:12px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+@media(prefers-reduced-motion:reduce){.confetto{display:none}.card:hover,.btn:active{transform:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <div><span class="wm"><s>un</s>accomplished.</span><span class="sub">Front office · no trophies on file</span></div>
+  <nav id="nav" aria-label="Sections">
+    <button data-v="machine">Machine</button><button data-v="rack">Rack</button><button data-v="map">Map</button><button data-v="showdown">Showdown</button>
+  </nav>
+</header>
+
+<section id="v-machine">
+  <div class="mach">
+    <div>
+      <div class="stage" id="stage"><div id="tee"></div>
+        <div class="tag"><span id="tagcode"></span><button class="btn sm" id="reprint">Reprint</button></div>
+        <div class="sw" id="swatches" role="group" aria-label="Shirt color"></div>
+      </div>
+      <p id="take" hidden></p>
+    </div>
+    <div>
+      <h1>The Shirt Machine</h1>
+      <p class="lede">Three dials: formula, arena, reality. Spin until the committee approves something nobody should be proud of. Every field is editable, so type your own and get judged.</p>
+      <div class="grid2">
+        <label class="field" for="formula">Formula<select id="formula"></select></label>
+        <div class="field"><span id="rl">Reality</span><div class="seg" id="reality" role="group" aria-labelledby="rl"><button data-r="1" title="A real kind of event">1</button><button data-r="2" title="Real but oddly specific">2</button><button data-r="3" title="Shouldn't exist">3</button></div></div>
+      </div>
+      <label class="field" for="event">Event (the headline)<input id="event" autocomplete="off"></label>
+      <div class="grid3">
+        <label class="field" for="year">Year<input id="year" inputmode="numeric" maxlength="4" autocomplete="off"></label>
+        <label class="field" for="result">Result (the fine print)<input id="result" autocomplete="off"></label>
+      </div>
+      <div class="btns"><button class="btn pri" id="spin">Spin</button><button class="btn" id="gap">Spin a gap</button></div>
+      <div class="committee">
+        <div class="chead"><h2>Rules Committee</h2><span class="stamp" id="verdict"></span></div>
+        <ul id="rules"></ul>
+        <p class="note" id="zone"></p>
+      </div>
+      <div class="btns"><button class="btn" id="file">File under Ideas</button><button class="btn" id="copyrow">Copy sheet row</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="v-rack" hidden>
+  <h1>The Rack</h1>
+  <p class="lede">Every row of the Underwhelm Map, printed. Tap a shirt to pull it into the machine and mess with it.</p>
+  <div class="chips" id="chips"></div>
+  <div class="rack" id="rackgrid"></div>
+</section>
+
+<section id="v-map" hidden>
+  <h1>The Underwhelm Map</h1>
+  <p class="lede">Formula down the side, reality across the top. Darker means crowded. Dashed means nobody has been unimpressive there yet. Killed shirts don't count.</p>
+  <div class="split">
+    <div class="tblwrap"><table id="maptbl"></table></div>
+    <div><div class="chead"><h2 id="zt"></h2><button class="btn sm" id="spinzone">Spin this zone</button></div><ul class="zl" id="zl"></ul></div>
+  </div>
+</section>
+
+<section id="v-showdown" hidden>
+  <h1>Showdown</h1>
+  <p class="lede">Hand the phone to a friend. They tap the funnier shirt. Rule 9 says outside evidence overrules your gut, so this is where the Score column comes from.</p>
+  <div class="duel"><button class="card" id="dA"></button><span class="vs">or</span><button class="card" id="dB"></button></div>
+  <div class="btns"><button class="btn" id="skip">Neither is funny</button><span class="note" id="vcount" style="margin:0"></span></div>
+  <div class="chead"><h2>Standings</h2></div>
+  <div class="tblwrap"><table id="board"></table></div>
+  <div class="btns"><button class="btn" id="copyscores">Copy scores for the sheet</button><button class="btn" id="reset">Reset votes</button></div>
+</section>
+
+<textarea id="out" readonly hidden aria-label="Text to copy"></textarea>
+<footer>Rule 9: these are opinions until tested. Votes and filed ideas stay in this browser only.</footer>
+</div>
+<div id="toast" role="status" hidden></div>
+
+<script>
+const DATA=`A-Golf-1|State Golf Tournament 2012, 43rd Place|L|3|Questioning it. Not clearly underwhelming, you still made state. The 2012 year helps since he'd have been a kid|Tour Card Pending
+B-Golf-1|Elk Coulee Golf Club, Hole No. 7, 164 yards, 8 iron, PAR|L|3|Breaks the print test and 8 iron is confusing. Golf is universal so people get it. Already live, so test it|At Least It Was Witnessed
+C-SpellingBee-1|Tri-County Regional Spelling Bee 2016, Alternate|L|4|Original idea. A regional bee is easy to get into, so Alternate is the joke|Can't Spell Necessary Though
+D-Cornhole-3|Iowa Cornhole Safety Seminar 2013, Attendee|L|5|Good. The joke is the seminar|Dangerous Flying Objects
+A-AirGuitar-3|Nebraska Air Guitar Championships 2011, 9th Place|L|4|Good. The joke is the event, not the placing|Music to My Eyes
+A-Golf-1b|The 31st Annual Elk Coulee Open 2012, Missed Cut|D|2|Don't think they'd print it. Other people liked it a bit
+B-Golf-1b|Elk Coulee Golf Club, I Broke 100|D|3|Not bad, keep it. Hard for a random person to gauge
+C-Golf-1|Golf tournament, Caddie for the 14th place finisher|D|3|Kind of funny. Doesn't make me die laughing
+A-Golf-1c|Golf, Closest to the Pin, Runner-Up|D||No strong opinion
+A-Golf-1d|Golf, D Flight Runner-Up|D||
+A-Track-1|Pole Vault, 3rd Place|K|1|Too good, and track is hard to judge. Get rid of it
+A-Rowing-1|Rowing, 2nd Place|K|1|Too good. Get rid of it
+A-Cornhole-2|Cornhole Doubles, Runner-Up|D|2|Not a big fan
+F-Softball-1|Softball, Honorable Mention|D|3|Kind of funny, not wonderful. The church part is one of the funny parts
+C-Track-1|Relay, Alternate|D|1|Track again, and an alternate there is a real thing. Probably a real shirt
+C-5K-1|5K, Volunteer|D|1|An actual shirt. No one will think it's funny
+C-Football-1|Football, Chain Crew|D|1|Helper shirt. Not a fan
+C-Basketball-1|Basketball, Scoreboard Operator|D|1|Helper shirt. Not a fan
+C-Debate-1|Debate, Timekeeper|D|1|Helper shirt. Not a fan
+C-QuizBowl-1|Quiz Bowl, Scorekeeper|D|1|Helper shirt. Not a fan
+C-Hockey-1|Hockey, Penalty Box Attendant|D|2|Helper shirt, but a hockey friend went straight to it and giggled
+C-Volleyball-1|Volleyball, Line Judge|D|1|Helper shirt. Not a fan
+D-ScienceFair-1|Science Fair, Participant|K|1|A normal thing to attend. Not cool in a bad way
+A-CrossCountry-1|State Cross Country Meet 2011, 187th Place|D|3|Old and a huge number is funny. Real athletic effort makes it awkward. Ask cross country friends
+A-Bowling-1|State Bowling Tournament 2013, 61st Place|D|4|Funny. Bowling is like golf: anyone can play, so everyone knows where they'd stand
+A-Swimming-1|State Swim Championships 2010, 200 Freestyle, 38th Place|K|1|Don't swim, so 38th means nothing. Black hole sport
+A-Track-1b|State Track and Field Meet 2012, Shot Put, 29th Place|K|1|Almost impressive. Just mid
+A-TrapShooting-1|State Trap Shoot 2009, 112th Place|D|5|Love it. Nobody does trap shooting, so 112 people at state is absurd
+B-Bowling-1|Prairie Lanes Thursday League, Bowled a 104|D|4|Funny that they made a shirt for it. Could test a lower score
+B-Basketball-1|JV Basketball 2011, Made Both Free Throws|D|2|Would they make a shirt for that? Creative. Get other opinions
+B-Fishing-1|Lake Arbor Walleye Classic 2014, One Fish, 11 Inches|I|2|Don't know what a good fish is or how competitive it was
+C-Wrestling-1|State Wrestling Tournament 2012, Mat Crew|I|1|A real shirt could exist for mat crew. Helpers get shirts
+C-MarchingBand-1|State Marching Band Finals 2010, Prop Crew|I|1|Same helper problem
+C-Theater-1|State One-Act Play Festival 2011, Understudy|I|1|Same helper problem. Not a theater person
+D-LawnCare-1|Midwest Lawn Care Expo 2012, Attendee|D|5|Would wear it. Funny dad thing. A story you did not take part in
+A-Zucchini-2|Dunn County Fair Zucchini Weigh-Off 2013, 17th Place|D|4|Pleasant, has potential
+A-Horseshoes-2|Tri-County Horseshoe League 2011, 22nd Place|D|3|B or C tier. Not bad, needs something. On pause
+C-MowerRacing-2|Regional Lawn Mower Races 2012, Team Manager|D|4|Flag Holder was a helper shirt. Team Manager is funny
+D-SumpPumps-2|Upper Midwest Sump Pump Dealers Conference 2014, Attendee|D|5|Hilarious. Loves little conferences that don't exist
+D-Hammocks-3|Wisconsin Hammock Safety Seminar 2014, Attendee|D|5|Likes it a lot
+D-Grilling-3|Ohio Grill Cleaning Workshop 2012, Completed|D|2|Confusing. Likes grilling as a subject. Maybe grill cleaning
+A-RockPaperScissors-3|South Dakota Rock Paper Scissors Championships 2013, 31st Place|D|3|Interesting. On pause
+A-ThumbWrestling-3|Indiana Thumb Wrestling Open 2010, 12th Place|D|4|Kind of funny
+C-Golf-1b|State Golf Tournament 2012, Scoreboard Volunteer|I|1|Helper shirt. They could really make this one
+D-Golf-1|Elk Coulee Golf Club Rules Night 2013, Attendee|I|1|Only confusing why they made a shirt, not funny
+A-SpellingBee-1|Tri-County Regional Spelling Bee 2016, 91st Place|D|3|Worth exploring as a different angle on something that works
+B-SpellingBee-1|Tri-County Regional Spelling Bee 2016, Spelled TOMATO Correctly, Round 1|I|1|Too specific. Reads as a custom shirt that is trying to be funny
+B-Cornhole-2|Elm Street Block Party Cornhole Tournament 2013, One Bag in the Hole, Game 2|D|2|Sounds like a big event. Better at a smaller one. Hold for now
+C-AirGuitar-3|Nebraska Air Guitar Championships 2011, Guitar Technician|D|4|Likes it with the full word Technician
+E-Triathlon-1|Lake Arbor Triathlon 2013, Did Not Finish|D|4|Not too shabby. Try DNF on other races, like a marathon
+F-Basketball-1|JV Basketball 2011, Sportsmanship Award|I|1|A shirt you could reasonably have gotten
+G-Curling-1|Elk Coulee Curling Club, Member 2012 to 2012|D|4|Creative. Likes the automated 2012 to 2012 print. Months are an option
+H-PieEating-2|Dunn County Fair Pie Eating Contest 2012, Disqualified|I|2|Pie eating is already a joke. Keep Disqualified for something like the zucchini weigh-off
+D-Gutters-2|Great Plains Gutter Installers Convention 2013, Attendee|D|4|Likes it
+D-Septic-2|Tri-State Septic Professionals Summit 2011, Attendee|I|4|Likes it, similar deal
+D-Culverts-2|Northern Plains Culvert Symposium 2014, Attendee|D|3|Funny and fits the corporate vibe, but culverts are boring and maybe too niche
+D-Snowblowers-2|Minnesota Snowblower Dealers Expo 2012, Attendee|I|4|Likes the conferences as a group
+D-GarageDoors-2|Midwest Garage Door Expo 2010, Attendee|I|4|Likes the conferences as a group
+D-FencePosts-2|Upper Midwest Fence Post Conference 2009, Attendee|I|4|Likes the conferences as a group
+D-Trampolines-3|Kansas Trampoline Safety Seminar 2012, Attendee|K|1|Drop. Could be a real thing
+D-LawnChairs-3|Montana Lawn Chair Safety Seminar 2015, Attendee|K|1|Drop
+D-Potlucks-3|Minnesota Potluck Safety Seminar 2011, Attendee|I||
+D-Propane-3|Ohio Propane Tank Exchange Orientation 2012, Attendee|K|1|Drop
+C-RockPaperScissors-3|South Dakota Rock Paper Scissors Championships 2013, Assistant Coach|I|4|Likes it
+C-ThumbWrestling-3|Indiana Thumb Wrestling Open 2010, Athletic Trainer|I||
+C-Horseshoes-2|Tri-County Horseshoe League 2011, Equipment Manager|I||
+C-Cornhole-2|Iowa Cornhole Open 2013, Strength Coach|K|1|Drop
+C-MusicalChairs-3|Wisconsin Musical Chairs Invitational 2014, Alternate|D|5|Likes it a lot. Hilarious
+E-Marathon-1|Prairie Rose Marathon 2014, Did Not Finish|D|4|Likes the did-not-finish idea. Keep DNF small so people notice it second
+E-FunRun-1|Lake Arbor 5K Fun Run 2012, Did Not Finish|I|4|Good. Same note: keep DNF small
+E-CornMaze-2|Elk Coulee Corn Maze 2013, Did Not Finish|I|4|Good. Same note: keep DNF small
+E-Walkathon-1|Dunn County Walkathon 2011, Did Not Finish|I|4|Good. Same note: keep DNF small
+A-MiniGolf-2|State Mini Golf Championships 2012, 58th Place|I|3|Classic big-number placings. All fine, same category
+A-Darts-1|State Darts Tournament 2010, 94th Place|I|3|Classic big-number placings. All fine, same category
+A-Pool-1|State 8-Ball Tournament 2011, 77th Place|I|3|Classic big-number placings. All fine, same category
+A-PingPong-1|State Ping Pong Championships 2014, 103rd Place|I|3|Classic big-number placings. All fine, same category
+A-Checkers-2|Dunn County Checkers Tournament 2012, 46th Place|I|3|Classic big-number placings. All fine, same category
+H-Zucchini-2|Dunn County Fair Zucchini Weigh-Off 2013, Disqualified|D||The entry-tag design is too personalized to be a real mass-produced shirt
+H-Fishing-1|Lake Arbor Walleye Classic 2014, Disqualified|K|1|Drop
+H-SpellingBee-1|Tri-County Regional Spelling Bee 2016, Disqualified|I||
+I-Golf-1|State Golf Tournament 2012, Did Not Qualify|I|3|Okay
+J-Regatta-1|Lake Arbor Regatta 2013, Cancelled|I||
+K-Horseshoes-2|Tri-County Horseshoe League 2011, Won by Forfeit|I|2|Not a big fan
+B-Bowling-1b|Prairie Lanes 100 Club, Member|D||
+I-Triathlon-1|Lake Arbor Triathlon 2013, Waitlist|I||
+H-GarageDoors-2|Midwest Garage Door Expo 2010, Asked to Leave|I||
+C-Golf-1c|Elk Coulee Golf Club, Guest of a Member|I||
+H-Zucchini-2b|Dunn County Fair Zucchini Weigh-Off 2013, Results Under Review|I||
+C-Golf-1d|State Golf Tournament 2012, Practice Round Only|I||
+A-Darts-1b|State Darts Tournament 2010, Tied for Last|I||`;
+
+const F={A:'Bad placing',B:'Mundane feat',C:'Barely involved',D:'Just showed up',E:'Did not finish',F:'Faint praise',G:'Brief tenure',H:'Disqualified',I:'Did not qualify',J:'Cancelled',K:'Won by forfeit'};
+const RN={1:'real',2:'oddly specific',3:"shouldn't exist"};
+const ST={L:'Live',D:'Designed',I:'Idea',K:'Killed',N:'Filed by you'};
+const GARMENTS=[['Heather','#b8bab4','#1f2c44','#8c2f2b'],['Navy','#243049','#efe6cf','#e2a52b'],['Forest','#2e4a3a','#efe6cf','#e2a52b'],['Butter','#ead78a','#2e4a3a','#8c2f2b'],['Natural','#ece4d0','#1f2c44','#b5452f'],['Maroon','#6c2a33','#efe6cf','#e9c46a'],['Powder','#a8c2d6','#1f2c44','#8c2f2b'],['Faded black','#2c2c2e','#e8e2d2','#d98f2b']];
+const STYLES=['arc','script','chest','bib','ribbon','expo','crest'];
+const SN={arc:'Vintage arch',script:'Script',chest:'Left chest',bib:'Race bib',ribbon:'Prize ribbon',expo:'90s trade show',crest:'Club crest'};
+const OV={'D-SumpPumps-2':'chest','D-LawnCare-1':'expo','A-Bowling-1':'script','A-TrapShooting-1':'script','D-Cornhole-3':'arc','C-SpellingBee-1':'arc','A-Golf-1':'arc'};
+const FG='Graduate,Rockwell,serif',FB="'Barlow Condensed','Arial Narrow',sans-serif",FS="Yellowtail,'Brush Script MT',cursive";
+
+const $=id=>document.getElementById(id);
+const q=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+const hash=t=>{let h=7;for(const c of t)h=(h*31+c.charCodeAt(0))>>>0;return h};
+const rnd=n=>Math.floor(Math.random()*n),pick=a=>a[rnd(a.length)];
+const ord=n=>{const v=n%100,s=['th','st','nd','rd'];return n+(s[(v-20)%10]||s[v]||s[0])};
+const cap=t=>t.replace(/\b[a-z]/g,m=>m.toUpperCase());
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function parse(says){const p=says.split(', ');let ev=p[0],yr='';const m=ev.match(/\b(19|20)\d\d\b/);if(m){yr=m[0];ev=ev.replace(m[0],'').replace(/\s+/g,' ').trim()}return{event:ev,year:yr,result:p.slice(1).join(', ')}}
+const S=DATA.split('\n').map(l=>{const[code,says,status,gut,take,etsy]=l.split('|'),c=code.split('-');
+  return{code,says,status,gut:gut?+gut:null,take:take||'',etsy:etsy||'',f:c[0],arena:c[1].replace(/([a-z])([A-Z])/g,'$1 $2'),r:parseInt(c[2]),...parse(says)}});
+
+let store={votes:{},filed:[]};
+try{Object.assign(store,JSON.parse(localStorage.getItem('unacc-v1')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('unacc-v1',JSON.stringify(store))}catch(e){}};
+const all=()=>S.concat(store.filed);
+
+/* ---------- print shop ---------- */
+function wrap(t,max){const o=[];let l='';for(const x of t.split(' ')){if(l&&(l+' '+x).length>max){o.push(l);l=x}else l=l?l+' '+x:x}if(l)o.push(l);return o}
+const fit=(t,w,base,k)=>+Math.min(base,w/(Math.max(t.length,1)*k)).toFixed(1);
+const tx=(t,x,y,z,font,fill,more='')=>`<text x="${x}" y="${(+y).toFixed(1)}" font-size="${z}" font-family="${font}" fill="${fill}" text-anchor="middle" ${more}>${q(t)}</text>`;
+function stack(L,x,y,w,base,k,font,fill,more='',lh=1.12){const z=Math.min(...L.map(l=>fit(l,w,base,k)));let o='';for(const l of L){o+=tx(l,x,y,z,font,fill,more);y+=z*lh}return[o,y,z]}
+const fine=(t,x,y,w,base,fill)=>tx(t.toUpperCase(),x,y,fit(t,w,base,.62),FB,fill,'font-weight="600" letter-spacing="1.5"');
+const ini=e=>e.replace(/\b(the|of|and|annual|\d+\w*)\b/gi,'').trim().split(/\s+/).slice(0,3).map(w=>w[0]||'').join('').toUpperCase();
+const PRINT={
+ arc(s,c,a,id){const L=wrap(s.event.toUpperCase(),15).slice(0,4);let y=178,
+  o=`<path id="${id}" d="M112 178 Q200 134 288 178" fill="none"/><text font-size="${fit(L[0],165,22,.8)}" font-family="${FG}" fill="${c}" text-anchor="middle"><textPath href="#${id}" startOffset="50%">${q(L[0])}</textPath></text>`;
+  if(L.length>1){const[r,ny,z]=stack(L.slice(1),200,200,168,20,.8,FG,c);o+=r;y=ny-z*1.12}
+  if(s.year){y+=40;o+=tx(s.year,200,y,36,FG,a,'letter-spacing="3"')}else{y+=24;o+=tx('★ ★ ★',200,y,14,FB,a)}
+  return o+`<path d="M150 ${y+12} H250" stroke="${c}" stroke-width="1.5"/>`+fine(s.result,200,y+29,165,11,c)},
+ script(s,c,a){const w=cap(s.arena||'Open'),[r,y]=stack(wrap(s.event.toUpperCase(),24).slice(0,3),200,244,170,12,.6,FB,c,'font-weight="700" letter-spacing="2"',1.25);
+  return`<g transform="rotate(-6 200 190)">${tx(w,200,196,fit(w,165,52,.42),FS,a)}<path d="M122 212 Q200 224 282 206" stroke="${a}" stroke-width="3" fill="none" stroke-linecap="round"/></g>`+r+(s.year?tx(s.year,200,y+4,12,FB,c,'font-weight="700" letter-spacing="3"'):'')+fine(s.result,200,y+(s.year?24:6),150,10,a)},
+ chest(s,c,a){const[r,y]=stack(wrap(s.event.toUpperCase(),17).slice(0,4),258,151,76,7.5,.6,FB,c,'font-weight="700" letter-spacing=".6"',1.2),R=(s.year?s.year+' · ':'')+s.result.toUpperCase();
+  return`<circle cx="258" cy="126" r="12" fill="none" stroke="${c}" stroke-width="1.5"/>`+tx(ini(s.event),258,129.5,8,FG,c)+r+tx(R,258,y+3,fit(R,78,6.5,.6),FB,a,'font-weight="700" letter-spacing=".6"')},
+ bib(s,c,a,id,gc){const[r]=stack(wrap((s.event+(s.year?' '+s.year:'')).toUpperCase(),26).slice(0,2),200,154,146,11,.56,FB,gc,'font-weight="700" letter-spacing="1"',1.15);
+  return`<rect x="114" y="126" width="172" height="136" rx="5" fill="${c}"/>`+[[123,135],[277,135],[123,253],[277,253]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="${gc}"/>`).join('')+r+tx(String(100+hash(s.event)%900),200,228,56,FG,gc,'letter-spacing="4"')+`<path d="M134 238 H266" stroke="${gc}" stroke-width="1"/>`+fine(s.result,200,252,120,8.5,gc)},
+ ribbon(s,c,a,id,gc){let o='';for(let i=0;i<14;i++){const t=i/14*6.283;o+=`<circle cx="${(200+30*Math.cos(t)).toFixed(1)}" cy="${(146+30*Math.sin(t)).toFixed(1)}" r="8.5" fill="${a}"/>`}
+  o+=`<path d="M186 172 L172 226 L188 214 L199 230 L200 176 Z M214 172 L228 226 L212 214 L201 230 L200 176 Z" fill="${a}"/><circle cx="200" cy="146" r="30" fill="${a}"/><circle cx="200" cy="146" r="21" fill="${gc}"/>`+tx(s.year||'★',200,s.year?150.5:152,s.year?13:18,FG,a);
+  const[r,y]=stack(wrap(s.event.toUpperCase(),17).slice(0,4),200,264,168,16,.8,FG,c);return o+r+fine(s.result,200,y+6,160,11,a)},
+ expo(s,c,a){const[r,y]=stack(wrap(s.event.toUpperCase(),13).slice(0,4),200,208,165,32,.5,FB,c,'font-weight="800" font-style="italic"',.98),R=s.result.toUpperCase(),w=Math.min(170,R.length*6.6+26);
+  return`<path d="M122 122 L170 122 L146 164 Z" fill="${a}"/><circle cx="252" cy="142" r="20" fill="none" stroke="${c}" stroke-width="5"/><path d="M176 170 q8 -12 16 0 t16 0 t16 0 t16 0" stroke="${a}" stroke-width="3.5" fill="none" stroke-linecap="round"/>`+(s.year?tx("'"+s.year.slice(2),251,147,13,FG,c):'')+r+`<rect x="${200-w/2}" y="${(y-12).toFixed(1)}" width="${w}" height="19" rx="9.5" fill="none" stroke="${a}" stroke-width="1.5"/>`+tx(R,200,y+1.5,fit(R,w-22,9.5,.62),FB,a,'font-weight="700" letter-spacing="1.5"')},
+ crest(s,c,a,id){const E=s.event.toUpperCase(),R=s.result.toUpperCase(),tp=(t,i,z,f)=>`<text font-size="${z}" font-family="${FB}" font-weight="700" letter-spacing="1.2" fill="${f}" text-anchor="middle"><textPath href="#${i}" startOffset="50%">${q(t)}</textPath></text>`;
+  return`<circle cx="200" cy="205" r="75" fill="none" stroke="${c}" stroke-width="3"/><circle cx="200" cy="205" r="50" fill="none" stroke="${c}" stroke-width="1.5"/><path id="${id}" d="M143 205 A57 57 0 0 1 257 205" fill="none"/><path id="${id}b" d="M131 205 A69 69 0 0 0 269 205" fill="none"/><circle cx="137.5" cy="205" r="2.4" fill="${a}"/><circle cx="262.5" cy="205" r="2.4" fill="${a}"/>`
+  +tp(E,id,fit(E,160,12,.68),c)+tp(R,id+'b',fit(R,185,10.5,.68),a)+tx(ini(s.event),200,s.year?208:216,30,FG,c)+(s.year?tx(s.year,200,229,13,FG,a,'letter-spacing="2"'):'')}
+};
+function styleFor(s){if(OV[s.code])return OV[s.code];const h=hash(s.event);switch(s.f){case'D':return s.r===3?'arc':['expo','chest','crest'][h%3];case'E':return'bib';case'F':return'ribbon';case'G':return'crest';case'B':return['crest','script'][h%2];case'A':return s.r===2?'ribbon':['arc','script'][h%2];default:return['arc','crest','script'][h%3]}}
+let uid=0;
+function shirt(s){const g=GARMENTS[s.garment??hash(s.code||s.event)%8],st=s.style||styleFor(s);
+ return`<svg class="tee" viewBox="0 0 400 420" role="img" aria-label="${q(s.event+', '+s.result)}"><path d="M132 38 L62 66 L8 146 L64 186 L94 152 L94 404 L306 404 L306 152 L336 186 L392 146 L338 66 L268 38 Q200 84 132 38 Z" fill="${g[1]}" stroke="rgba(0,0,0,.35)" stroke-width="2" stroke-linejoin="round"/><path d="M127 41 Q200 98 273 41" fill="none" stroke="rgba(0,0,0,.16)" stroke-width="8"/><path d="M94 152 L99 262 M306 152 L301 262" stroke="rgba(0,0,0,.13)" stroke-width="2" fill="none"/>${PRINT[st](s,g[2],g[3],'p'+(uid++),g[1])}</svg>`}
+
+/* ---------- the machine ---------- */
+const PLACES=['Tri-County','Dunn County','Elk Coulee','Lake Arbor','Prairie Rose','Upper Midwest','Great Plains','Northern Plains','Tri-State'];
+const STATES=['Iowa','Nebraska','Wisconsin','Minnesota','South Dakota','North Dakota','Indiana','Ohio','Kansas'];
+const ARENAS={1:['Bowling','Darts','8-Ball','Ping Pong','Golf','Trap Shoot','Softball','Curling','Disc Golf','Pickleball','Racquetball'],
+ 2:['Mini Golf','Horseshoe','Checkers','Cribbage','Euchre','Shuffleboard','Bean Bag','Kickball','Lawn Mower Racing','Duck Calling','Seed Spitting','Bingo','Foosball','Tetherball'],
+ 3:['Thumb Wrestling','Musical Chairs','Rock Paper Scissors','Air Guitar','Staring Contest','Tic-Tac-Toe','Hide and Seek','Four Square','Red Rover','Coin Flip','Duck Duck Gray Duck']};
+const TRADES=['Sump Pump Dealers','Gutter Installers','Septic Professionals','Culvert','Snowblower Dealers','Garage Door','Fence Post','Mailbox Installers','Water Softener Dealers','Storm Door','Vinyl Siding','Dehumidifier','Gravel','Parking Lot Striping','Drywall Tapers','Downspout'];
+const GATHER=['Conference','Expo','Convention','Summit','Symposium'];
+const SAFETY=['Hammock','Cornhole','Potluck','Kite','Sprinkler','Bean Bag Chair','Pool Noodle','Recliner','Porch Swing','Yo-Yo','Slip and Slide'];
+const HOBBY=['Lawn Care','Bird Feeder','Deck Stain','Mulch','RV Awning','Riding Mower'];
+const RACES={1:['Marathon','Triathlon','5K Fun Run','Walkathon','Bike Tour'],2:['Corn Maze','Scavenger Hunt','Canoe Float','Turkey Trot'],3:['Sack Race','Three-Legged Race','Egg and Spoon Race']};
+const FEATS={Golf:['Golf Club','Par, Hole No. 7','Bogey, Hole No. 3'],Bowling:['Lanes','Bowled a 104','100 Club, Member'],'Mini Golf':['Putt-Putt','Par, Hole No. 4'],Darts:['Dart League','Hit the Board']};
+const TITLES=['Team Manager','Assistant Coach','Athletic Trainer','Equipment Manager','Strength Coach','Video Coordinator','Director of Operations','Team Chaplain'];
+function build(f,r){const place=pick(PLACES),st=pick(STATES);let arena=pick(ARENAS[r]),year=String(2009+rnd(8)),event,result;
+ const comp=r===1?`State ${arena} ${pick(['Tournament','Championships'])}`:r===2?`${place} ${arena} ${pick(['Tournament','League','Open'])}`:`${st} ${arena} ${pick(['Championships','Open','Invitational'])}`;
+ switch(f){
+  case'A':event=comp;result=ord(r===3?9+rnd(30):41+rnd(150))+' Place';break;
+  case'B':arena=pick(Object.keys(FEATS));event=`${place} ${FEATS[arena][0]}`;result=pick(FEATS[arena].slice(1));break;
+  case'C':event=comp;result=r===1?pick(['Alternate','Guest of a Member','Practice Round Only']):pick(TITLES);break;
+  case'D':if(r===3){arena=pick(SAFETY);event=`${st} ${arena} Safety Seminar`}else if(r===2){arena=pick(TRADES);event=`${place} ${arena} ${pick(GATHER)}`}else{arena=pick(HOBBY);event=`Midwest ${arena} Expo`}result='Attendee';break;
+  case'E':arena=pick(RACES[r]);event=`${place} ${arena}`;result='Did Not Finish';break;
+  case'F':event=comp;result=pick(['Honorable Mention','Sportsmanship Award','Most Improved']);break;
+  case'G':event=`${place} ${arena} Club`;result=`Member ${year} to ${year}`;year='';break;
+  case'H':event=comp;result=pick(['Disqualified','Asked to Leave','Results Under Review']);break;
+  case'I':event=comp;result=pick(['Did Not Qualify','Waitlist']);break;
+  case'J':event=comp;result='Cancelled';break;
+  default:event=comp;result='Won by Forfeit'}
+ const s={f,r,arena,event,year,result,code:'',take:'',etsy:'',garment:rnd(8)};s.style=styleFor(s);return s}
+const codeFor=s=>`${s.f}-${cap(s.arena).replace(/[^A-Za-z0-9]/g,'')}-${s.r}`;
+const saysOf=s=>s.event+(s.year?' '+s.year:'')+', '+s.result;
+
+function judge(s){const R=s.result,E=s.event,t=E+' '+R,out=[],add=(n,v,m)=>out.push({n,v,m});
+ const helper=/crew|volunteer|operator|line judge|keeper|attendant|usher|understudy/i.test(R),serious=/manager|coach|trainer|technician|coordinator|director|chaplain/i.test(R);
+ const pl=(R.match(/(\d+)(st|nd|rd|th)\b/i)||[])[1],bh=/swim|track|shot put|pole vault|rowing|wrestl|fishing|walleye|gymnast|freestyle|cross country/i.test(t);
+ if(helper&&s.r<3)add('Print test','fail','Helpers get shirts. This is just a real shirt.');
+ else if(s.f==='B'&&!/golf|bowl|lanes|100 club/i.test(t))add('Print test','warn','Nobody prints a souvenir for that. It reads as a joke shirt.');
+ else add('Print test','ok','A real organizer would plausibly have printed this.');
+ const stk=(s.r===3&&'BEFHJK'.includes(s.f))||(s.f==='H'&&/pie eating|hot dog/i.test(E));
+ add('One joke per shirt',stk?'warn':'ok',stk?'The event is already a joke. The result should play it straight.':'One slot is funny. Everything else plays it straight.');
+ if(s.f==='A')add('Anyone can judge it',bh?'fail':'ok',bh?'Black hole sport. A stranger cannot tell if that number is bad.':'A stranger knows right away this is unimpressive.');
+ if(pl){const n=+pl;if(n<=5)add('No dead middle','fail',ord(n)+' is too good. Get rid of it.');
+  else if(n<40&&s.r<3)add('A bad number has to be clearly bad','warn',ord(n)+' could pass for decent. Push it further.');
+  else add('A bad number has to be clearly bad','ok',n<40?'The event is the joke, so the number can stay modest.':ord(n)+' is clearly bad.')}
+ else if(/runner.?up|second|third/i.test(R))add('No dead middle','warn','Runner-up may read too good.');
+ if(serious)add('Staff titles only in absurd arenas',s.r>1?'ok':'fail',s.r>1?'Serious title, unserious arena.':'At a real event this is a real job.');
+ if(s.f==='D'&&/conference|seminar|expo|summit|symposium|convention/i.test(E))add('A story you did not take part in','ok','Strongest zone so far. A whole event the wearer barely attended.');
+ const pers=/\b(i|my|you|your)\b/i.test(t)||R.split(',').length>3;
+ add('Mass-produced, never personalized',pers?'warn':'ok',pers?'Too specific to one person. It has to look like they printed hundreds.':'Looks like they printed hundreds.');
+ add('Event is the headline','ok','Handled by the print shop. The result is always the fine print.');
+ const fl=out.filter(x=>x.v==='fail').length,w=out.filter(x=>x.v==='warn').length;
+ return{out,verdict:fl?'fail':w?'warn':'ok',gut:Math.max(1,Math.min(5,(s.f==='D'&&s.r>1?5:4)-2*fl-w))}}
+
+let cur,lastV;
+const zoneCount=(f,r)=>all().filter(s=>s.status!=='K'&&s.f===f&&s.r===r).length;
+function sync(){$('formula').value=cur.f;$('event').value=cur.event;$('year').value=cur.year;$('result').value=cur.result;
+ document.querySelectorAll('#reality button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.r===cur.r));}
+function draw(){$('tee').innerHTML=shirt(cur);$('tagcode').textContent=(cur.code||codeFor(cur))+' · '+SN[cur.style];
+ document.querySelectorAll('#swatches button').forEach((b,i)=>b.setAttribute('aria-pressed',i===cur.garment));
+ const j=judge(cur);lastV=j.verdict;const v=$('verdict');v.className='stamp v-'+j.verdict;v.textContent={ok:'Approved for print',warn:'Tabled',fail:'Sent back'}[j.verdict];
+ $('rules').innerHTML=j.out.map(x=>`<li class="v-${x.v}"><b>${{ok:'PASS',warn:'HMM',fail:'FAIL'}[x.v]}</b><span style="color:var(--ink)"><strong>${x.n}.</strong> ${q(x.m)}</span></li>`).join('');
+ const n=zoneCount(cur.f,cur.r)-(cur.status&&cur.status!=='K'?1:0);
+ $('zone').textContent=`Zone ${cur.f}${cur.r} (${F[cur.f].toLowerCase()}, ${RN[cur.r]}): ${n?n+' other shirt'+(n>1?'s':'')+' on the map':'empty. This would be the first'}. Committee guesses a gut of ${j.gut} out of 5.`+(j.verdict==='ok'?' Celebration budget: one confetti.':'');
+ const tk=$('take');tk.hidden=!cur.take&&!cur.etsy;tk.innerHTML=(cur.take?`<b>Your take, Nov 14${cur.gut?' · gut '+cur.gut+'/5':''}</b>${q(cur.take)}`:'')+(cur.etsy?`<b style="margin-top:6px">Etsy name</b>${q(cur.etsy)}`:'')}
+function load(s){cur={...s,style:s.style||styleFor(s),garment:s.garment??hash(s.code)%8};sync();draw()}
+function confetti(){if(reduce)return;const c=document.createElement('i');c.className='confetto';c.style.left=(25+Math.random()*50)+'%';$('stage').appendChild(c);setTimeout(()=>c.remove(),2700)}
+function spin(f,r){const n=reduce?0:7;let i=0;(function tick(){cur=build(f||pick('AAACCDDDDEEFGHIJK'.split('')),r||1+rnd(3));sync();draw();if(i++<n)setTimeout(tick,55+i*14);else if(lastV==='ok')confetti()})()}
+
+/* ---------- rack ---------- */
+let rf='all';
+const dots=g=>g?`<span class="dots" title="Gut ${g} of 5">${[1,2,3,4,5].map(i=>`<i class="${i<=g?'f':''}"></i>`).join('')}</span>`:'';
+function drawRack(){const A=all(),cnt=k=>A.filter(s=>s.status===k).length;
+ $('chips').innerHTML=[['all','All',A.length],...Object.keys(ST).map(k=>[k,ST[k],cnt(k)])].filter(c=>c[2]).map(c=>`<button data-f="${c[0]}" aria-pressed="${rf===c[0]}">${c[1]} ${c[2]}</button>`).join('');
+ $('rackgrid').innerHTML=A.filter(s=>rf==='all'||s.status===rf).map(s=>`<button class="card" data-c="${q(s.code)}">${shirt(s)}<span class="pill st-${s.status}">${ST[s.status]}</span><span class="says">${q(s.says)}</span><span class="meta"><span>${q(s.code)}</span>${dots(s.gut)}</span></button>`).join('')}
+
+/* ---------- map ---------- */
+let sel={f:'D',r:2};
+function drawMap(){const A=all().filter(s=>s.status!=='K');let h=`<tr><th></th>${[1,2,3].map(r=>`<th>${r}<small>${RN[r]}</small></th>`).join('')}</tr>`;
+ for(const f in F){h+=`<tr><th scope="row">${f}. ${F[f]}</th>`;for(const r of[1,2,3]){const z=A.filter(s=>s.f===f&&s.r===r),g=z.filter(s=>s.gut),avg=g.length?(g.reduce((a,s)=>a+s.gut,0)/g.length).toFixed(1):'';
+  h+=`<td><button class="zone${z.length?'':' gapz'}${z.length>7?' hot':''}${sel.f===f&&sel.r===r?' on':''}" data-f="${f}" data-r="${r}" style="--n:${Math.min(z.length,12)/12}" aria-label="${F[f]}, reality ${r}: ${z.length} shirts"><b>${z.length||'gap'}</b>${avg?`<small>gut ${avg}</small>`:''}</button></td>`}h+='</tr>'}
+ $('maptbl').innerHTML=h;const z=A.filter(s=>s.f===sel.f&&s.r===sel.r);
+ $('zt').textContent=`Zone ${sel.f}${sel.r} · ${F[sel.f]}, ${RN[sel.r]}`;
+ $('zl').innerHTML=z.length?z.map(s=>`<li><button data-c="${q(s.code)}"><span>${q(s.says)}</span><span class="meta" style="margin:0;flex-wrap:nowrap"><span class="pill st-${s.status}">${ST[s.status]}</span>${dots(s.gut)}</span></button></li>`).join(''):'<li class="note">Nobody has been unimpressive here yet. Spin this zone and be the first.</li>'}
+
+/* ---------- showdown ---------- */
+let duel;
+const V=c=>store.votes[c]||(store.votes[c]={e:1000,n:0,w:0});
+function nextDuel(){const pool=all().filter(s=>s.status!=='K').map(s=>[(store.votes[s.code]||{n:0}).n+Math.random(),s]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+ const a=pool[rnd(6)];let b;do{b=pick(pool)}while(b===a);duel=[a,b];
+ ['dA','dB'].forEach((id,i)=>{$(id).innerHTML=shirt(duel[i])+`<span class="says">${q(duel[i].says)}</span>`})}
+function scores(){const v=Object.entries(store.votes).filter(x=>x[1].n>=3).sort((a,b)=>b[1].e-a[1].e),m={};v.forEach((x,i)=>m[x[0]]=5-Math.floor(i/v.length*5));return m}
+function drawBoard(){const sc=scores(),by={};all().forEach(s=>by[s.code]=s);const rows=Object.entries(store.votes).filter(x=>x[1].n&&by[x[0]]).sort((a,b)=>b[1].e-a[1].e);
+ const total=Object.values(store.votes).reduce((a,v)=>a+v.w,0);$('vcount').textContent=total?`${total} vote${total>1?'s':''} cast. A shirt gets a score after 3 matchups.`:'';
+ $('board').innerHTML='<tr><th>#</th><th>Shirt</th><th>W–L</th><th>Score</th><th>Gut</th></tr>'+(rows.length?rows.map(([c,v],i)=>{const s=by[c],x=sc[c],up=x&&s.gut&&Math.abs(x-s.gut)>=2;
+  return`<tr><td>${i+1}</td><td>${q(s.says)}<small>${q(c)}${up?` · <span class="up">upset: gut said ${s.gut}</span>`:''}</small></td><td>${v.w}–${v.n-v.w}</td><td>${x||'·'}</td><td>${s.gut||'·'}</td></tr>`}).join(''):'<tr><td colspan="5" class="note">No votes yet. Standings appear after the first tap above.</td></tr>')}
+function vote(i){const a=V(duel[i].code),b=V(duel[1-i].code),ea=1/(1+10**((b.e-a.e)/400));a.e+=32*(1-ea);b.e-=32*(1-ea);a.n++;b.n++;a.w++;save();nextDuel();drawBoard()}
+
+/* ---------- plumbing ---------- */
+let tt;function toast(m){const t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,2600)}
+function copy(text){const fb=()=>{const o=$('out');o.hidden=false;o.value=text;o.focus();o.select();toast('Copy is blocked here. The text is selected below.')};
+ try{navigator.clipboard.writeText(text).then(()=>toast('Copied'),fb)}catch(e){fb()}}
+const VIEWS=['machine','rack','map','showdown'];
+function show(v){if(!VIEWS.includes(v))v='machine';VIEWS.forEach(x=>$('v-'+x).hidden=x!==v);
+ document.querySelectorAll('#nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.v===v?'page':'false'));
+ if(v==='rack')drawRack();if(v==='map')drawMap();if(v==='showdown'){if(!duel)nextDuel();drawBoard()}}
+const go=v=>{try{location.hash=v}catch(e){}show(v);window.scrollTo(0,0)};
+const byCode=c=>all().find(s=>s.code===c);
+
+$('formula').innerHTML=Object.keys(F).map(f=>`<option value="${f}">${f}. ${F[f]}</option>`).join('');
+$('swatches').innerHTML=GARMENTS.map((g,i)=>`<button data-g="${i}" style="background:${g[1]}" title="${g[0]}" aria-label="${g[0]}"></button>`).join('');
+$('nav').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.v)};
+$('formula').onchange=e=>{cur=build(e.target.value,cur.r);sync();draw()};
+$('reality').onclick=e=>{const b=e.target.closest('button');if(b){cur=build(cur.f,+b.dataset.r);sync();draw()}};
+['event','year','result'].forEach(k=>$(k).oninput=e=>{cur[k]=e.target.value;cur.code='';cur.status='';cur.take='';cur.etsy='';draw()});
+$('swatches').onclick=e=>{const b=e.target.closest('button');if(b){cur.garment=+b.dataset.g;draw()}};
+$('reprint').onclick=()=>{cur.style=STYLES[(STYLES.indexOf(cur.style)+1)%STYLES.length];draw()};
+$('spin').onclick=()=>spin();
+$('gap').onclick=()=>{const z=[];for(const f in F)for(const r of[1,2,3])if(zoneCount(f,r)<2)z.push([f,r]);const p=pick(z);spin(p[0],p[1])};
+$('file').onclick=()=>{if(!cur.event.trim()||!cur.result.trim())return toast('Needs an event and a result');let c=codeFor(cur),n=0;while(byCode(c))c=codeFor(cur)+'bcdefghij'[n++];
+ const s={...cur,code:c,says:saysOf(cur),status:'N',gut:null,take:'Spun by the machine.',etsy:''};store.filed.push(s);save();cur=s;draw();toast('Filed as '+c)};
+$('copyrow').onclick=()=>copy([cur.code||codeFor(cur),saysOf(cur),cur.f+'. '+F[cur.f],cap(cur.arena),cur.r,'Idea','','Wildcard','Spun by the machine'].join('\t'));
+$('chips').onclick=e=>{const b=e.target.closest('button');if(b){rf=b.dataset.f;drawRack()}};
+$('rackgrid').onclick=$('zl').onclick=e=>{const b=e.target.closest('button[data-c]');if(b){load(byCode(b.dataset.c));go('machine')}};
+$('maptbl').onclick=e=>{const b=e.target.closest('.zone');if(b){sel={f:b.dataset.f,r:+b.dataset.r};drawMap()}};
+$('spinzone').onclick=()=>{go('machine');spin(sel.f,sel.r)};
+$('dA').onclick=()=>vote(0);$('dB').onclick=()=>vote(1);$('skip').onclick=nextDuel;
+$('copyscores').onclick=()=>{const sc=scores(),k=Object.keys(sc);if(!k.length)return toast('No scores yet. Shirts need 3 matchups.');copy('Code\tScore\n'+k.map(c=>c+'\t'+sc[c]).join('\n'))};
+let armed=0;$('reset').onclick=e=>{if(Date.now()-armed<4000){store.votes={};save();drawBoard();e.target.textContent='Reset votes';armed=0;toast('Votes erased')}else{armed=Date.now();e.target.textContent='Tap again to erase';setTimeout(()=>{e.target.textContent='Reset votes'},4000)}};
+window.addEventListener('hashchange',()=>show(location.hash.slice(1)));
+
+load(S.find(s=>s.code==='D-SumpPumps-2'));
+show(location.hash.slice(1));
+</script>
